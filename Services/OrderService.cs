@@ -10,9 +10,12 @@ namespace QuartzExample.API.Services
 
             foreach (var item in orders)
             {
-                item.Status = "waiting";
+                item.Status = DateTime.Now.Hour.ToString()+DateTime.Now.Minute.ToString();
                 Console.WriteLine($"{item.Id}-order status={item.Status}");
             }
+
+            context.UpdateRange(orders);
+            context.SaveChanges();
         }
     }
 }
